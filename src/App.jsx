@@ -13,12 +13,10 @@ import NotFound from './components/NotFound'
 
 const App = () => {
   const [photos, setPhotos] = useState([])
-  const [title, setTitle] = useState('Results')
   const [loading, setLoading] = useState(false)
 
   const fetchData = useCallback(async (query) => {
     setLoading(true) // Start Loading
-    setTitle(query) // Update search title
 
     try {
       const response = await fetch(
