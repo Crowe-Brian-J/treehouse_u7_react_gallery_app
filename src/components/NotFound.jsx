@@ -1,3 +1,6 @@
+// NotFound.jsx
+// Displays a 404 page and optionally allows the user to search for the unmatched URL
+
 import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 

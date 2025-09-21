@@ -1,3 +1,6 @@
+// Search.jsx
+// Implements fetch logic and handles submit via enter or click
+
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 

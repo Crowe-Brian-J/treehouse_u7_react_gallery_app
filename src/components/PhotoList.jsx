@@ -1,3 +1,6 @@
+// PhotoList.jsx
+// Creates photo container div. Maps over photos retrieved from pixabay. Renders no results if applicable.
+
 import Photo from './Photo'
 
 const PhotoList = ({ photos, title }) => {

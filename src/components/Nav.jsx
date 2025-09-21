@@ -1,3 +1,6 @@
+// Nav.jsx
+// Displays the nav component underneath the search bar with the three required topics
+
 import { NavLink } from 'react-router-dom'
 
 const Nav = () => {

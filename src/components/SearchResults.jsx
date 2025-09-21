@@ -1,3 +1,6 @@
+// SearchResults.jsx
+// Renders page when search functionality is used
+
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import PhotoList from './PhotoList'

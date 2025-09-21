@@ -1,3 +1,6 @@
+// TopicPage.jsx
+// Renders a PhotoList for a given static topic and fetches photos when the topic changes
+
 import { useEffect } from 'react'
 import PhotoList from './PhotoList'
 
