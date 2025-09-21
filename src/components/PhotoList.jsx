@@ -5,8 +5,10 @@ const PhotoList = ({ photos, title }) => {
     return (
       <div className="photo-container">
         <h2>{title}</h2>
-        <h3>No Results Found</h3>
-        <p>Your search did not return any results. Please try again.</p>
+        <div className="not-found">
+          <h3>No Results Found</h3>
+          <p>Your search did not return any results. Please try again.</p>
+        </div>
       </div>
     )
   }

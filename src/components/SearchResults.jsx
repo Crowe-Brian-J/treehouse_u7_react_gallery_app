@@ -10,7 +10,7 @@ const SearchResults = ({ fetchData, photos, loading }) => {
   }, [query, fetchData])
 
   if (loading) {
-    return <h2>Loading...</h2>
+    return <h2 className="not-found">Loading...</h2>
   }
 
   return <PhotoList photos={photos} title={query} />
