@@ -9,6 +9,7 @@ import Search from './components/Search'
 import PhotoList from './components/PhotoList'
 import SearchResults from './components/SearchResults'
 import TopicPage from './components/TopicPage'
+import NotFound from './components/NotFound'
 
 const App = () => {
   const [photos, setPhotos] = useState([])
@@ -111,7 +112,7 @@ const App = () => {
         />
 
         {/* 404 fallback */}
-        <Route path="*" element={<h2>404 - Page Not Found</h2>} />
+        <Route path="*" element={<NotFound fetchData={fetchData} />} />
       </Routes>
     </div>
   )
