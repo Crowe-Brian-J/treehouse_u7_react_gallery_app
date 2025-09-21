@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import { Routes, Route, Navigate } from 'react-router-dom'
 // Import API Key
 import apiKey from './config'
 
@@ -6,7 +7,8 @@ import apiKey from './config'
 import Nav from './components/Nav'
 import Search from './components/Search'
 import PhotoList from './components/PhotoList'
-import { use } from 'react'
+import SearchResults from './components/SearchResults'
+import TopicPage from './components/TopicPage'
 
 const App = () => {
   const [photos, setPhotos] = useState([])
@@ -41,16 +43,54 @@ const App = () => {
     }
   }
 
-  // Fetch dogs as default topic on mount because dogs > cats
-  useEffect(() => {
-    fetchData('dogs')
-  }, [])
+  // Use default topic on initial mount
+  const defaultTopic = 'cats'
 
   return (
     <div className="container">
       <Search fetchData={fetchData} />
       <Nav />
-      <PhotoList photos={photos} title={title} />
+
+      <Routes>
+        {/* redirect / to default topic */}
+        <Route
+          path="/"
+          element={<Navigate to={`/${defaultTopic}`} replace />}
+        />
+
+        {/* static topic routes */}
+        <Route
+          path="/cats"
+          element={
+            <TopicPage topic="cats" fetchData={fetchData} photos={photos} />
+          }
+        />
+        <Route
+          path="/dogs"
+          element={
+            <TopicPage topic="dogs" fetchData={fetchData} photos={photos} />
+          }
+        />
+        <Route
+          path="/computers"
+          element={
+            <TopicPage
+              topic="computers"
+              fetchData={fetchData}
+              photos={photos}
+            />
+          }
+        />
+
+        {/* dynamic search route */}
+        <Route
+          path="/search/:query"
+          element={<SearchResults fetchData={fetchData} photos={photos} />}
+        />
+
+        {/* 404 fallback */}
+        <Route path="*" element={<h2>404 - Page Not Found</h2>} />
+      </Routes>
     </div>
   )
 }
