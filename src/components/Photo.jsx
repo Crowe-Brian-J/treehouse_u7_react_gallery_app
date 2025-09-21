@@ -1,5 +1,9 @@
-const Photo = () => {
-  return <li>{/* single photo will go here */}</li>
+const Photo = ({ photo }) => {
+  return (
+    <li>
+      <img src={photo.url} alt={photo.tags} />
+    </li>
+  )
 }
 
 export default Photo
