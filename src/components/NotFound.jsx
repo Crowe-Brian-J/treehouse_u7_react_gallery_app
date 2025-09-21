@@ -16,6 +16,9 @@ const NotFound = ({ fetchData }) => {
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ')
 
+  // Check if the query is 'safe' to offer as a search
+  const isValidQuery = /^[\w\s-]+$/i.test(formattedQuery) // letters, numbers, spaces, hyphens
+
   const handleSearch = () => {
     fetchData(query)
     navigate(`/search/${encodeURIComponent(decodedQuery)}`)
@@ -26,13 +29,22 @@ const NotFound = ({ fetchData }) => {
       <h2>404 - Page Not Found</h2>
       {query && (
         <div className="not-found">
-          <p>
-            It seems like you were trying to search for "{formattedQuery}".
-            Would you like to try that?
-          </p>
-          <button onClick={handleSearch} className="main-nav-link">
-            Search for "{formattedQuery}"
-          </button>
+          {isValidQuery ? (
+            <>
+              <p>
+                It seems like you were trying to search for "{formattedQuery}".
+                Would you like to try that?
+              </p>
+              <button onClick={handleSearch} className="main-nav-link">
+                Search for "{formattedQuery}"
+              </button>
+            </>
+          ) : (
+            <p>
+              This page does not exist, please try one of the navigation links
+              above or a new search.
+            </p>
+          )}
         </div>
       )}
     </div>
