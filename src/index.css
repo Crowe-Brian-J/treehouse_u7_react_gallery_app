@@ -89,24 +89,6 @@ input {
   transform: scale(1.65);
 }
 
-.photo-container .not-found {
-  width: 100%;
-  text-align: center;
-  font-size: 1.25em;
-  color: #275270; /* dark blue for visibility */
-  margin: 20px 0;
-}
-
-.photo-container .not-found h3 {
-  font-size: 1.5em;
-  margin-bottom: 8px;
-}
-
-.photo-container .not-found p {
-  font-size: 1em;
-  color: #3f4850;
-}
-
 @media only screen and (max-width: 767px)  {
   body {
     padding-top: 2em;
