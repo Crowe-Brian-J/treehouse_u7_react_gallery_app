@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 // Import API Key
 import apiKey from './config'
@@ -13,9 +13,12 @@ import TopicPage from './components/TopicPage'
 const App = () => {
   const [photos, setPhotos] = useState([])
   const [title, setTitle] = useState('Results')
+  const [loading, setLoading] = useState(false)
 
-  const fetchData = async (query) => {
+  const fetchData = useCallback(async (query) => {
+    setLoading(true) // Start Loading
     setTitle(query) // Update search title
+
     try {
       const response = await fetch(
         `https://pixabay.com/api/?key=${apiKey}&q=${encodeURIComponent(
@@ -40,8 +43,10 @@ const App = () => {
     } catch (err) {
       console.error('Error fetching data:', err)
       setPhotos([]) // Clear photos on error
+    } finally {
+      setLoading(false)
     }
-  }
+  }, [])
 
   // Use default topic on initial mount
   const defaultTopic = 'cats'
@@ -62,13 +67,23 @@ const App = () => {
         <Route
           path="/cats"
           element={
-            <TopicPage topic="cats" fetchData={fetchData} photos={photos} />
+            <TopicPage
+              topic="cats"
+              fetchData={fetchData}
+              photos={photos}
+              loading={loading}
+            />
           }
         />
         <Route
           path="/dogs"
           element={
-            <TopicPage topic="dogs" fetchData={fetchData} photos={photos} />
+            <TopicPage
+              topic="dogs"
+              fetchData={fetchData}
+              photos={photos}
+              loading={loading}
+            />
           }
         />
         <Route
@@ -78,6 +93,7 @@ const App = () => {
               topic="computers"
               fetchData={fetchData}
               photos={photos}
+              loading={loading}
             />
           }
         />
@@ -85,7 +101,13 @@ const App = () => {
         {/* dynamic search route */}
         <Route
           path="/search/:query"
-          element={<SearchResults fetchData={fetchData} photos={photos} />}
+          element={
+            <SearchResults
+              fetchData={fetchData}
+              photos={photos}
+              loading={loading}
+            />
+          }
         />
 
         {/* 404 fallback */}
