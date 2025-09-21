@@ -26,6 +26,7 @@ const Search = ({ fetchData }) => {
     <form className="search-form" onSubmit={handleSubmit}>
       <input
         type="search"
+        name="search"
         placeholder="Search"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
